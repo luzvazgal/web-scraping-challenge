@@ -27,13 +27,17 @@ def main():
     return render_template("index.html", title=title, description=description, featured_image=featured_url, 
     general_data=general_data, hemisphere_images=hemisphere_imgs)
 
+
 @app.route("/scrape")
 def scrape():
     #Dropping database if already exists
     db.mars.drop()
 
+    dictionary = sm.scrape()
+    print(type(dictionary))
+
     #inserting dictionary coming from scrape function in scrape_mars.py
-    db.mars.insert(sm.scrape())
+    db.mars.insert_many(dictionary)
    
    #Visualizing announcement data has been scrapped and inserted in Mongo
     return render_template("scrape.html")

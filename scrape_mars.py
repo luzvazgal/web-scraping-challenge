@@ -94,8 +94,8 @@ def scrape():
     #Using DataFrame_to_html to convert DataFrames to HTML
     #Iterating on DataFrames lists to print
 
-    for table_df in tables_df:
-        print(table_df.to_html())
+   # for table_df in tables_df:
+    #    print(table_df.to_html())
 
     ## Mars Hemispheres
     #Creating a dictionary with the image url string and the hemisphere title to a list. This list will contain one dictionary for each hemisphere.
@@ -116,13 +116,13 @@ def scrape():
     #tables_df - all tables containing general information of Mars. The dictionary will only contain the general info
     #Hemisphere_image_urls - All four Mars hemispheres' images
 
-    mars_data_dictionary = {
+    mars_data_dictionary = [{
         "Title":nasa_news_title,
         "Description":nasa_news_p,
         "Featured_Image_URL": featured_image_url,
-        "General_Data": tables_df[0],
+        "General_Data": tables_df[0].to_html(),
         "Hemisphere_Images_URLs": hemisphere_image_urls
-    }
+    }]
 
 
     return mars_data_dictionary
