@@ -118,7 +118,7 @@ def scrape():
 
     mars_data_dictionary = {
         "Title":nasa_news_title,
-        "Description":nasa_news_title,
+        "Description":nasa_news_p,
         "Featured_Image_URL": featured_image_url,
         "General Data": tables_df[0],
         "Hemisphere_Images_URLs": hemisphere_image_urls
