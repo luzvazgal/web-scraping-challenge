@@ -14,12 +14,12 @@ db = client.mars_db
 
 @app.route("/")
 def main():
-    my_Text = "This data comes from Python!"
-    hobbies = ["dancing", "exercise", "eating", "plants"]
-    player_dictionary = {
-        "player_1": "Jessica",
-        "player_2": "Mark"
-    }
+    #Getting data from MongoDB
+    mars_info = list(db.mars.find())
+    print(mars_info)
+
+    #Render data in index.htlm
+    return render_template("index.html", teams=teams)
     return render_template("index.html", text=my_Text, 
     hobbies_list=hobbies, dictionary=player_dictionary)
 
