@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import pymongo
+import scrape_mars as sm
 
 app = Flask(__name__)
 
@@ -26,10 +27,11 @@ def main():
 def scrape():
     #Dropping database if already exists
     db.mars.drop()
-    
-    #inserting dictionary
-    db.mars.insert()
+
+    #inserting dictionary coming from scrape function in scrape_mars.py
+    db.mars.insert(sm.scrape())
    
+   #Visualizing announcement data has been scrapped and inserted in Mongo
     return render_template("scrape.html")
 
 
