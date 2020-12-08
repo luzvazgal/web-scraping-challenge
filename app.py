@@ -18,12 +18,8 @@ def main():
     mars_info = db.mars.find_one()
     #print(f"TYPE: {type(mars_info)}")
 
-    print(mars_info)
-    title = mars_info['Title']
-    description= mars_info['Description']
-    featured_url = mars_info['Featured_Image_URL']
-    general_data= mars_info['General_Data']
-    hemisphere_imgs = mars_info['Hemisphere_Images_URLs']
+ 
+    
     
     #return render_template("index.html", title=title, description=description, featured_image=featured_url, general_data=general_data, hemisphere_images=hemisphere_imgs)
     return render_template("index.html", mars_info=mars_info)
