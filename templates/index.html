@@ -15,7 +15,7 @@
               <h1>MARS info</h1>
               <hr>
               <!--Iterating inside list-->
-              <p><a class="btn btn-primary btn-lg" href="#" role="button">Scrap your new data &raquo;</a></p>
+              <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrap new data &raquo;</a></p>
               <ul>
                   {%for team in teams%}
                   <li>{{team.player}} plays as: {{team.position}}</li>
@@ -23,7 +23,45 @@
               </ul>
             
         </div>
+        <div class="row" id="news">
+            <div class="col-md-12">
+                <p>
+              <h4 class="heading">Latest Mars News</h4>
+              <h6 class="heading">{{mars_info.Title}} </h6>
+              <small>{{mars_info.Description}}</small></p>
+            </div>
+          </div>
+          <div class="row" >
+            <div class="col-md-9">
+                <p>
+                <h4 class="heading">Featured Mars Image</h4>
+                <img src={{mars_info.Featured_Image_URL}} width="75%" height="75%">
+            </p>
+            </div>
+            <div class="col-md-3">
+                <p>
+                    <h4 class="heading">Mars Facts</h4>
+                    {{mars_info.General_Data}}
+                </p>
+            </div>
+          </div>
+          
+          {% for hemisphere in mars_info.Hemisphere_Images_URLs %}
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <img src={{hemisphere["img_url"]}} width="100%" height="225" background="#55595c" color="#eceeef" class="card-img-top">
+              <div class="card-body">
+                <p class="card-text">{{hemisphere['title']}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
       </div>
+   
+    
     
 </body>
 </html>

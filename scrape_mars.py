@@ -11,14 +11,16 @@ from webdriver_manager.chrome import ChromeDriverManager
 import re as re
 #Importing Pandas as it will be used to scrap tables
 import pandas as pd
+from selenium import webdriver
 
 
 
 #Getting robot and load driver into cache
 executable_path = {'executable_path': ChromeDriverManager().install()}
+#option = webdriver.ChromeOptions()
+#option.add_argument('--headless')
+#driver = webdriver.Chrome(chrome_options=option)
 browser = Browser('chrome', **executable_path, headless=False)
-
-
 
 #URLs of sites to scrap
 NASA_site = "https://mars.nasa.gov/news/"
@@ -101,10 +103,10 @@ def scrape():
     #Creating a dictionary with the image url string and the hemisphere title to a list. This list will contain one dictionary for each hemisphere.
 
     hemisphere_image_urls = [
-        {"title": "Valles Marineris Hemisphere", "img_url": "https://astrogeology.usgs.gov/search/map/Mars/Viking/valles_marineris_enhanced"},
-        {"title": "Cerberus Hemisphere", "img_url": "https://astrogeology.usgs.gov/search/map/Mars/Viking/cerberus_enhanced"},
-        {"title": "Schiaparelli Hemisphere", "img_url": "https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced"},
-        {"title": "Syrtis Major Hemisphere", "img_url": "https://astrogeology.usgs.go"}
+        {"title": "Valles Marineris Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg"},
+        {"title": "Cerberus Hemisphere", "img_url": "https://astrogeology.usgs.gov/search/map/Mars/Viking/cerberus_enhanced.tif/full.jpg"},
+        {"title": "Schiaparelli Hemisphere", "img_url": "https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced.tif/full.jpg"},
+        {"title": "Syrtis Major Hemisphere", "img_url": "https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg"}
         ]
 
 
