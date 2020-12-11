@@ -93,11 +93,11 @@ def scrape():
                     break
 
     #Displaying Pandas content as HTML
-    #Using DataFrame_to_html to convert DataFrames to HTML
-    #Iterating on DataFrames lists to print
+    #Writing an HTML file code with table embedded
 
-   # for table_df in tables_df:
-    #    print(table_df.to_html())
+    html_file = open("templates/table.html", "w") 
+    html_file.write(tables_df[0].to_html()) 
+    html_file.close()   
 
     ## Mars Hemispheres
     #Creating a dictionary with the image url string and the hemisphere title to a list. This list will contain one dictionary for each hemisphere.
@@ -122,7 +122,7 @@ def scrape():
         "Title":nasa_news_title,
         "Description":nasa_news_p,
         "Featured_Image_URL": featured_image_url,
-        "General_Data": tables_df[0].to_html(),
+        "General_Data": tables_df[0].to_html(index=False, header=False, justify="center", classes="cell_format"),
         "Hemisphere_Images_URLs": hemisphere_image_urls
     }]
 
