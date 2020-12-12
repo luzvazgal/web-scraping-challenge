@@ -159,6 +159,7 @@ def scrape():
         "Title":nasa_news_title,
         "Description":nasa_news_p,
         "Featured_Image_URL": featured_image_url,
+        "Weather" : mars_weather,
         "General_Data": tables_df[0].to_html(index=False, header=False, justify="center", classes="cell_format"),
         "Hemisphere_Images_URLs": hemisphere_image_urls
     }]

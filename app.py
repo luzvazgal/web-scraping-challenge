@@ -30,7 +30,6 @@ def scrape():
     db.mars.drop()
 
     dictionary = sm.scrape()
-    print(type(dictionary))
 
     #inserting dictionary coming from scrape function in scrape_mars.py
     db.mars.insert_many(dictionary)
