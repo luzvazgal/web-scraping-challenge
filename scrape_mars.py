@@ -11,7 +11,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 import re as re
 #Importing Pandas as it will be used to scrap tables
 import pandas as pd
-
+#Importing Tweepy library and keys from twitter_api_keys file, which keys are generated 
+#through Twitter developer account I have
+import tweepy
+from twitter_api_keys import consumer_key, consumer_secret, access_token, access_token_secret
 
 
 
@@ -68,6 +71,40 @@ def scrape():
     #Getting the value of 'data-fancybox-href' attriburte in 'a' tag to form Image URL variable
     featured_image_url = "https://www.jpl.nasa.gov"+image_a_tag['data-fancybox-href']
    
+    
+    ##Mars Weather based on MarsWxReport tweets 
+    #Using Twitter API keys to authenticate 
+    #Code taken from: https://towardsdatascience.com/how-to-scrape-tweets-from-twitter-59287e20f0f1
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth,wait_on_rate_limit=True)
+
+    #Twitter scraping to user 'MarsWxReport'
+    username = 'MarsWxReport'
+    count = 10
+    mars_weather = ""
+    #Initial point to get text from
+    regex_start = re.compile('InSight')
+    #End point to get text from
+    regex_end = re.compile('https:')
+
+    try:     
+    # Creation of query method using parameters
+        tweets = tweepy.Cursor(api.user_timeline,id=username).items(count)
+ 
+    # Pulling information from tweets iterable object
+        for tweet in tweets:
+    #Finding the first tweet having weather conditions: 
+            start_text = regex_start.search(tweet.text)
+            if start_text:
+                end_text = regex_end.search(tweet.text)
+                mars_weather = tweet.text[start_text.span()[1]:end_text.span()[0]]
+                print(f" Mars {mars_weather}")
+                break
+    except BaseException as e:
+        print('failed on_status,',str(e))
+    
+    
     ## Mars Facts 
     #Mars Facts webscraping
 
